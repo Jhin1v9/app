@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Casino Design Tokens */
+    --felt-green: #0B3D2E;
+    --felt-green-light: #1A5C42;
+    --felt-green-dark: #072A1F;
+    --gold: #D4A830;
+    --gold-light: #F0C94A;
+    --gold-dark: #A68324;
+    --burgundy: #7B1F3C;
+    --burgundy-dark: #4A1224;
+    --emerald: #10B981;
+    --emerald-dark: #059669;
+    --ruby: #DC2626;
+    --ruby-dark: #B91C1C;
+    --bg-dark: #0A0E1A;
+    --bg-card: #141B2D;
+    --bg-card-hover: #1C2540;
+    --bg-elevated: #1E2945;
+    --border-subtle: #2A3655;
+    --border-gold: rgba(212,168,48,0.5);
+    --text-primary: #F0F0F5;
+    --text-secondary: #8B95B8;
+    --text-gold: #D4A830;
+    --suit-clubs: #1A1A1A;
+    --suit-spades: #1A1A1A;
+    --suit-hearts: #DC2626;
+    --suit-diamonds: #DC2626;
+
+    /* Gradients */
+    --gradient-table: radial-gradient(ellipse at center, #1A5C42 0%, #0B3D2E 60%, #072A1F 100%);
+    --gradient-gold: linear-gradient(135deg, #D4A830 0%, #F0C94A 50%, #D4A830 100%);
+    --gradient-gold-shine: linear-gradient(135deg, #D4A830 0%, #F0C94A 30%, #FFFFFF 50%, #F0C94A 70%, #D4A830 100%);
+    --gradient-dark-panel: linear-gradient(180deg, #141B2D 0%, #0F1525 100%);
+    --gradient-modal: linear-gradient(180deg, #1E2945 0%, #141B2D 100%);
+
+    /* Animation Tokens */
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --duration-instant: 100ms;
+    --duration-fast: 200ms;
+    --duration-normal: 300ms;
+    --duration-slow: 500ms;
+    --duration-dramatic: 800ms;
+
+    /* shadcn compatibility */
+    --background: 222 47% 7%;
+    --foreground: 240 20% 96%;
+    --card: 222 35% 12%;
+    --card-foreground: 240 20% 96%;
+    --popover: 222 35% 15%;
+    --popover-foreground: 240 20% 96%;
+    --primary: 43 65% 50%;
+    --primary-foreground: 222 47% 7%;
+    --secondary: 222 35% 18%;
+    --secondary-foreground: 240 20% 96%;
+    --muted: 222 35% 18%;
+    --muted-foreground: 227 20% 57%;
+    --accent: 222 35% 18%;
+    --accent-foreground: 240 20% 96%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 222 30% 25%;
+    --input: 222 30% 25%;
+    --ring: 43 65% 50%;
+    --radius: 0.625rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100dvh;
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-subtle);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-dark);
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(212, 168, 48, 0.3);
+    color: var(--text-primary);
+  }
+}
+
+@layer components {
+  /* Gold Button (Primary CTA) */
+  .btn-gold {
+    @apply relative inline-flex items-center justify-center gap-2 px-8 py-3 font-semibold text-sm rounded-md-game overflow-hidden transition-all duration-fast;
+    background: var(--gradient-gold);
+    color: var(--bg-dark);
+    box-shadow: 0 4px 16px rgba(212, 168, 48, 0.3);
+  }
+  .btn-gold:hover {
+    background: var(--gradient-gold-shine);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(212, 168, 48, 0.4);
+  }
+  .btn-gold:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 8px rgba(212, 168, 48, 0.2);
+  }
+  .btn-gold:disabled {
+    opacity: 0.4;
+    filter: grayscale(1);
+    pointer-events: none;
+  }
+
+  /* Dark Button (Secondary) */
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium text-sm rounded-md-game transition-all duration-fast;
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+  }
+  .btn-dark:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--gold);
+  }
+  .btn-dark:active {
+    transform: scale(0.98);
+  }
+
+  /* Game Panel */
+  .game-panel {
+    background: var(--gradient-dark-panel);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Card base */
+  .playing-card {
+    @apply relative inline-flex flex-col items-center justify-center select-none;
+    width: clamp(50px, 12vw, 90px);
+    aspect-ratio: 2/3;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), inset 0 0 2px rgba(255, 255, 255, 0.1);
+    transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+  }
+  .playing-card:hover:not(:disabled) {
+    transform: translateY(-12px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 168, 48, 0.2);
+  }
+  .playing-card.selected {
+    transform: translateY(-20px);
+    box-shadow: 0 0 20px rgba(212, 168, 48, 0.4), 0 6px 20px rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--gold);
+  }
+
+  /* Gold text shimmer */
+  .text-shimmer {
+    background: var(--gradient-gold-shine);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gold-shine 3s linear infinite;
+  }
+
+  /* Table gradient */
+  .table-bg {
+    background: var(--gradient-table);
+  }
+
+  /* Modal backdrop */
+  .modal-backdrop {
+    @apply fixed inset-0 z-40 flex items-center justify-center;
+    background: rgba(10, 14, 26, 0.8);
+    backdrop-filter: blur(4px);
+  }
+
+  /* Gold shine keyframes for text */
+  @keyframes gold-shine {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+}
+
+@layer utilities {
+  /* GPU-accelerated transforms only */
+  .gpu-transform {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Safe area padding for mobile */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* Prevent text selection during gameplay */
+  .no-select {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Hide scrollbar but keep scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

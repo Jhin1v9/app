@@ -1,0 +1,16 @@
+{
+  "name": "Truco Poker Arena",
+  "short_name": "Truco Poker",
+  "description": "Premium Truco & Poker card game - O melhor jogo de cartas do Brasil",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0E1A",
+  "theme_color": "#0B3D2E",
+  "orientation": "any",
+  "icons": [
+    { "src": "/logo-gold.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/logo-gold.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "categories": ["games"],
+  "lang": "pt-BR"
+}
