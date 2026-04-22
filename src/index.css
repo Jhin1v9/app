@@ -194,6 +194,127 @@
     background: var(--gradient-table);
   }
 
+  .truco-room-bg {
+    background:
+      radial-gradient(circle at 50% 18%, rgba(240, 201, 74, 0.12), transparent 28%),
+      radial-gradient(circle at 18% 35%, rgba(16, 185, 129, 0.13), transparent 24%),
+      linear-gradient(135deg, #151018 0%, #071512 44%, #080b12 100%);
+  }
+
+  .truco-room-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(circle at center, black 0%, transparent 78%);
+  }
+
+  .truco-table-shell {
+    position: relative;
+    border-radius: 9999px;
+    padding: clamp(14px, 2.4vw, 26px);
+    background:
+      radial-gradient(ellipse at 50% 10%, rgba(255,255,255,0.25), transparent 32%),
+      linear-gradient(135deg, #8a4d21 0%, #3a1d10 32%, #b26a2b 51%, #32170c 100%);
+    border: 1px solid rgba(255, 214, 128, 0.22);
+    box-shadow:
+      0 30px 80px rgba(0, 0, 0, 0.62),
+      inset 0 2px 0 rgba(255, 236, 191, 0.28),
+      inset 0 -16px 32px rgba(0, 0, 0, 0.42);
+  }
+
+  .truco-table-shell::before {
+    content: '';
+    position: absolute;
+    inset: clamp(6px, 1vw, 12px);
+    border-radius: inherit;
+    border: clamp(6px, 1vw, 10px) solid rgba(45, 18, 10, 0.74);
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.08),
+      0 0 0 1px rgba(255, 209, 116, 0.12);
+    pointer-events: none;
+  }
+
+  .truco-table-felt {
+    position: relative;
+    overflow: hidden;
+    border-radius: 9999px;
+    background:
+      radial-gradient(ellipse at center, rgba(40, 147, 96, 0.9) 0%, rgba(10, 93, 63, 0.92) 46%, rgba(5, 43, 32, 1) 100%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 7px);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow:
+      inset 0 0 80px rgba(0, 0, 0, 0.48),
+      inset 0 0 0 2px rgba(255,255,255,0.05);
+  }
+
+  .truco-table-felt::before {
+    content: '';
+    position: absolute;
+    inset: 8%;
+    border-radius: inherit;
+    border: 1px dashed rgba(240, 201, 74, 0.28);
+    pointer-events: none;
+  }
+
+  .truco-table-felt::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.18;
+    background-image:
+      radial-gradient(circle at 18% 22%, rgba(255,255,255,0.18) 0 1px, transparent 1px),
+      radial-gradient(circle at 72% 68%, rgba(255,255,255,0.14) 0 1px, transparent 1px);
+    background-size: 18px 18px, 23px 23px;
+    mix-blend-mode: screen;
+  }
+
+  .truco-seat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: min(42vw, 190px);
+    padding: 7px 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: linear-gradient(180deg, rgba(14, 18, 28, 0.86), rgba(8, 10, 16, 0.78));
+    box-shadow: 0 14px 32px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+  }
+
+  .truco-seat.is-active {
+    border-color: rgba(240, 201, 74, 0.55);
+    box-shadow: 0 0 26px rgba(212,168,48,0.26), 0 14px 32px rgba(0,0,0,0.42);
+  }
+
+  .truco-seat-left,
+  .truco-seat-right {
+    max-width: 156px;
+  }
+
+  @media (max-width: 640px) {
+    .truco-seat {
+      gap: 6px;
+      padding: 6px 7px;
+      max-width: 150px;
+    }
+
+    .truco-seat-left,
+    .truco-seat-right {
+      max-width: 116px;
+    }
+
+    .truco-seat-left .min-w-0,
+    .truco-seat-right .min-w-0 {
+      display: none;
+    }
+  }
+
   /* Modal backdrop */
   .modal-backdrop {
     @apply fixed inset-0 z-40 flex items-center justify-center;
